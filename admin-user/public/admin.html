@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="login-form">
+      <input type="text" id="loginId" placeholder="Login ID" /><br />
+      <input type="password" id="password" placeholder="Password" /><br />
+      <button id="loginButton">Login</button>
+    </div>
+    <div id="adminLogin" class="content">
+      <p>Access to Admin portal granted.</p>
+    </div>
+    <div id="userLogin" class="content">
+      <p>User Login Success.</p>
+    </div>
+    <div id="invalidCred" class="content">
+      <p>Invalid Credentials</p>
+    </div>
+    <script>
+      const loginButton = document.getElementById("loginButton");
+      const loginIdInput = document.getElementById("loginId");
+      const passwordInput = document.getElementById("password");
+
+      loginButton.addEventListener("click", () => checkLogin());
+
+      function checkLogin() {
+        const loginId = loginIdInput.value;
+        const password = passwordInput.value;
+
+        if (loginId === "adminid" && password === "adminpass") {
+          document.getElementById("invalidCred").style.display = "none";
+          document.getElementById("userLogin").style.display = "none";
+          document.getElementById("adminLogin").style.display = "block";
+        } else if (loginId === "userid" && password === "userpass") {
+          document.getElementById("invalidCred").style.display = "none";
+          document.getElementById("adminLogin").style.display = "none";
+          document.getElementById("userLogin").style.display = "block";
+        } else {
+          document.getElementById("adminLogin").style.display = "none";
+          document.getElementById("userLogin").style.display = "none";
+          document.getElementById("invalidCred").style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>

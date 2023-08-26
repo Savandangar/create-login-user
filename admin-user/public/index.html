@@ -1,0 +1,149 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="checkFunction()">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Web Dev</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./add-user.html">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./admin.html">Account</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              onchange="searchData(this.value)"
+            />
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div id="content">
+      <table
+        style="border: solid 1px black"
+        class="table table-dark table-striped"
+      >
+        <thead>
+          <tr style="font-weight: bolder">
+            <td>Name</td>
+            <td>Model</td>
+            <td>Color</td>
+            <td>Year</td>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <script>
+      let filterData;
+      const data = [
+        {
+          Name: "Hyundai",
+          Model: "Creta",
+          Color: "Black",
+          Year: "2023",
+        },
+        {
+          Name: "Maruti",
+          Model: "Breza",
+          Color: "Black",
+          Year: "2023",
+        },
+        {
+          Name: "Tata",
+          Model: "Harrier",
+          Color: "Red",
+          Year: "2023",
+        },
+        {
+          Name: "Audi",
+          Model: "A4",
+          Color: "Black",
+          Year: "2023",
+        },
+        {
+          Name: "BMW",
+          Model: "X1",
+          Color: "Black",
+          Year: "2023",
+        },
+        {
+          Name: "Pissot",
+          Model: "Jazz",
+          Color: "White",
+          Year: "2023",
+        },
+        {
+          Name: "MG",
+          Model: "Hector",
+          Color: "Green",
+          Year: "2023",
+        },
+        {
+          Name: "Ford",
+          Model: "Figo",
+          Color: "Red",
+          Year: "2023",
+        },
+        {
+          Name: "Mahindra",
+          Model: "XUV",
+          Color: "Blue",
+          Year: "2023",
+        },
+      ];
+      function checkFunction() {
+        const table = document.getElementById("tbody");
+        (filterData ? filterData : data).forEach((d) => {
+          table.innerHTML =
+            table.innerHTML +
+            `<tr><td>${d.Name}</td><td>${d.Model}</td><td>${d.Color}<td>${d.Year}</td></tr>`;
+        });
+      }
+      function searchData(value) {
+        document.getElementById("tbody").innerHTML = "";
+        const keys = Object.keys(data[0]);
+        filterData = data.filter((d) =>
+          keys.find(
+            (k) => d[k] && d[k].toLowerCase().indexOf(value.toLowerCase()) > -1
+          )
+        );
+        checkFunction(filterData);
+      }
+    </script>
+    <script src="./bootstrap.min.js"></script>
+  </body>
+</html>
